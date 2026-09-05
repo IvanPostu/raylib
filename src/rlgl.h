@@ -672,6 +672,8 @@ RLAPI void rlBlitFramebuffer(int srcX, int srcY, int srcWidth, int srcHeight, in
 RLAPI void rlBindFramebuffer(unsigned int target, unsigned int framebuffer); // Bind framebuffer (FBO)
 
 // General render state
+RLAPI void rlEnableUnsafe(int state);                   // Enable specific state
+RLAPI void rlDisableUnsafe(int state);                  // Disable specific state
 RLAPI void rlEnableColorBlend(void);                    // Enable color blending
 RLAPI void rlDisableColorBlend(void);                   // Disable color blending
 RLAPI void rlEnableDepthTest(void);                     // Enable depth test
@@ -1914,6 +1916,10 @@ void rlActiveDrawBuffers(int count)
 //----------------------------------------------------------------------------------
 // General render state configuration
 //----------------------------------------------------------------------------------
+
+void rlEnableUnsafe(int state) { glEnable(state); }
+
+void rlDisableUnsafe(int state) { glDisable(state); }
 
 // Enable color blending
 void rlEnableColorBlend(void) { glEnable(GL_BLEND); }
