@@ -672,6 +672,7 @@ RLAPI void rlBlitFramebuffer(int srcX, int srcY, int srcWidth, int srcHeight, in
 RLAPI void rlBindFramebuffer(unsigned int target, unsigned int framebuffer); // Bind framebuffer (FBO)
 
 // General render state
+RLAPI void rlDrawVertexArrayWithMode(unsigned int mode, int offset, int count);
 RLAPI void rlTexImage2D(unsigned int target, int level, int internalFormat,
                         int width, int height, int border, unsigned int format,
                         unsigned int type, const void *pixels);
@@ -1925,6 +1926,10 @@ void rlActiveDrawBuffers(int count)
 //----------------------------------------------------------------------------------
 // General render state configuration
 //----------------------------------------------------------------------------------
+
+void rlDrawVertexArrayWithMode(unsigned int mode, int offset, int count) {
+  glDrawArrays(mode, offset, count);
+}
 
 void rlTexImage2D(unsigned int target, int level, int internalFormat, int width,
                   int height, int border, unsigned int format,
