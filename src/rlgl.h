@@ -673,6 +673,7 @@ RLAPI void rlBlitFramebuffer(int srcX, int srcY, int srcWidth, int srcHeight, in
 RLAPI void rlBindFramebuffer(unsigned int target, unsigned int framebuffer); // Bind framebuffer (FBO)
 
 // General render state
+RLAPI void rlLightModelfv(unsigned int pname, float *params);
 RLAPI void rlAlphaFunc(int func, float ref);
 RLAPI void rlBlendFunc(int sFactor, int dFactor);
 RLAPI void rlDrawVertexArrayWithMode(unsigned int mode, int offset, int count);
@@ -1929,6 +1930,10 @@ void rlActiveDrawBuffers(int count)
 //----------------------------------------------------------------------------------
 // General render state configuration
 //----------------------------------------------------------------------------------
+
+void rlLightModelfv(unsigned int pname, float *params) {
+    glLightModelfv(pname, params);
+}
 
 void rlAlphaFunc(int func, float ref) {
     glAlphaFunc(func, ref);
