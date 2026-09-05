@@ -673,6 +673,7 @@ RLAPI void rlBlitFramebuffer(int srcX, int srcY, int srcWidth, int srcHeight, in
 RLAPI void rlBindFramebuffer(unsigned int target, unsigned int framebuffer); // Bind framebuffer (FBO)
 
 // General render state
+RLAPI void rlAlphaFunc(int sFactor, int dFactor);
 RLAPI void rlBlendFunc(int sFactor, int dFactor);
 RLAPI void rlDrawVertexArrayWithMode(unsigned int mode, int offset, int count);
 RLAPI void rlTexImage2D(unsigned int target, int level, int internalFormat,
@@ -1928,6 +1929,10 @@ void rlActiveDrawBuffers(int count)
 //----------------------------------------------------------------------------------
 // General render state configuration
 //----------------------------------------------------------------------------------
+
+void rlAlphaFunc(int sFactor, int dFactor) {
+    glAlphaFunc(sFactor, dFactor);
+}
 
 void rlBlendFunc(int sFactor, int dFactor) {
     glBlendFunc(sFactor, dFactor);
