@@ -672,6 +672,7 @@ RLAPI void rlBlitFramebuffer(int srcX, int srcY, int srcWidth, int srcHeight, in
 RLAPI void rlBindFramebuffer(unsigned int target, unsigned int framebuffer); // Bind framebuffer (FBO)
 
 // General render state
+RLAPI void rlLightfv(unsigned int light, unsigned int pname, const float *params); // sets a floating-point property of a light source
 RLAPI void rlEnableUnsafe(int state);                   // Enable specific state
 RLAPI void rlDisableUnsafe(int state);                  // Disable specific state
 RLAPI void rlEnableColorBlend(void);                    // Enable color blending
@@ -1916,6 +1917,10 @@ void rlActiveDrawBuffers(int count)
 //----------------------------------------------------------------------------------
 // General render state configuration
 //----------------------------------------------------------------------------------
+
+void rlLightfv(unsigned int light, unsigned int pname, const float *params) {
+    glLightfv(light, pname, params);
+}
 
 void rlEnableUnsafe(int state) { glEnable(state); }
 
