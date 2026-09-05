@@ -864,6 +864,12 @@ void ClearBackground(Color color)
     rlClearScreenBuffers();                             // Clear current framebuffers
 }
 
+void BeginNoOpDrawing(void) {
+  CORE.Time.current = GetTime(); // Number of elapsed seconds since InitTimer()
+  CORE.Time.update = CORE.Time.current - CORE.Time.previous;
+  CORE.Time.previous = CORE.Time.current;
+}
+
 // Begin canvas (framebuffer) drawing
 void BeginDrawing(void)
 {
