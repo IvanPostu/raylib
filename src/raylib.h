@@ -1045,6 +1045,7 @@ RLAPI bool IsCursorOnScreen(void);                                // Check if cu
 
 // Drawing-related functions
 RLAPI void ClearBackground(Color color);                          // Clear background (framebuffer) to color
+RLAPI void BeginNoOpDrawing(void);
 RLAPI void BeginDrawing(void);                                    // Begin canvas (framebuffer) drawing
 RLAPI void EndDrawing(void);                                      // End canvas (framebuffer) drawing and swap buffers (double buffering)
 RLAPI void BeginMode2D(Camera2D camera);                          // Begin 2D mode with custom camera (2D)
