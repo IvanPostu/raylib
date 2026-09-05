@@ -672,9 +672,17 @@ RLAPI void rlBlitFramebuffer(int srcX, int srcY, int srcWidth, int srcHeight, in
 RLAPI void rlBindFramebuffer(unsigned int target, unsigned int framebuffer); // Bind framebuffer (FBO)
 
 // General render state
-RLAPI void rlLightfv(unsigned int light, unsigned int pname, const float *params); // sets a floating-point property of a light source
-RLAPI void rlEnableUnsafe(int state);                   // Enable specific state
-RLAPI void rlDisableUnsafe(int state);                  // Disable specific state
+RLAPI void rlTexImage2D(unsigned int target, int level, int internalFormat,
+                        int width, int height, int border, unsigned int format,
+                        unsigned int type, const void *pixels);
+RLAPI void rlTexParameteri(unsigned int target, unsigned int pname, int param);
+RLAPI void rlBindTexture(unsigned int target, unsigned int texture);
+RLAPI void rlGenTextures(int n, unsigned int *textures);
+RLAPI void rlLightfv(
+    unsigned int light, unsigned int pname,
+    const float *params); // sets a floating-point property of a light source
+RLAPI void rlEnableUnsafe(int state);  // Enable specific state
+RLAPI void rlDisableUnsafe(int state); // Disable specific state
 RLAPI void rlEnableColorBlend(void);                    // Enable color blending
 RLAPI void rlDisableColorBlend(void);                   // Disable color blending
 RLAPI void rlEnableDepthTest(void);                     // Enable depth test
@@ -1918,8 +1926,27 @@ void rlActiveDrawBuffers(int count)
 // General render state configuration
 //----------------------------------------------------------------------------------
 
+void rlTexImage2D(unsigned int target, int level, int internalFormat, int width,
+                  int height, int border, unsigned int format,
+                  unsigned int type, const void *pixels) {
+  glTexImage2D(target, level, internalFormat, width, height, border, format,
+               type, pixels);
+}
+
+void rlTexParameteri(unsigned int target, unsigned int pname, int param) {
+  glTexParameteri(target, pname, param);
+}
+
+void rlBindTexture(unsigned int target, unsigned int texture) {
+  glBindTexture(target, texture);
+}
+
+void rlGenTextures(int n, unsigned int *textures) {
+  glGenTextures(n, textures);
+}
+
 void rlLightfv(unsigned int light, unsigned int pname, const float *params) {
-    glLightfv(light, pname, params);
+  glLightfv(light, pname, params);
 }
 
 void rlEnableUnsafe(int state) { glEnable(state); }
