@@ -110,6 +110,7 @@
 #ifndef RLGL_H
 #define RLGL_H
 
+#include "raylib.h"
 #define RLGL_VERSION  "6.0"
 
 // Function specifiers in case library is build/used as a shared library
@@ -672,6 +673,7 @@ RLAPI void rlBlitFramebuffer(int srcX, int srcY, int srcWidth, int srcHeight, in
 RLAPI void rlBindFramebuffer(unsigned int target, unsigned int framebuffer); // Bind framebuffer (FBO)
 
 // General render state
+RLAPI void rlBlendFunc(int sFactor, int dFactor);
 RLAPI void rlDrawVertexArrayWithMode(unsigned int mode, int offset, int count);
 RLAPI void rlTexImage2D(unsigned int target, int level, int internalFormat,
                         int width, int height, int border, unsigned int format,
@@ -1926,6 +1928,10 @@ void rlActiveDrawBuffers(int count)
 //----------------------------------------------------------------------------------
 // General render state configuration
 //----------------------------------------------------------------------------------
+
+void rlBlendFunc(int sFactor, int dFactor) {
+    glBlendFunc(sFactor, dFactor);
+}
 
 void rlDrawVertexArrayWithMode(unsigned int mode, int offset, int count) {
   glDrawArrays(mode, offset, count);
