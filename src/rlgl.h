@@ -673,6 +673,15 @@ RLAPI void rlBlitFramebuffer(int srcX, int srcY, int srcWidth, int srcHeight, in
 RLAPI void rlBindFramebuffer(unsigned int target, unsigned int framebuffer); // Bind framebuffer (FBO)
 
 // General render state
+RLAPI void rlReadPixels(
+    int x,
+    int y,
+    int width,
+    int height,
+    unsigned int format,
+    unsigned int type,
+    void *data
+);
 RLAPI void rlDepthFunc(unsigned int func);
 RLAPI void rlLightModelfv(unsigned int pname, float *params);
 RLAPI void rlAlphaFunc(int func, float ref);
@@ -1931,6 +1940,22 @@ void rlActiveDrawBuffers(int count)
 //----------------------------------------------------------------------------------
 // General render state configuration
 //----------------------------------------------------------------------------------
+
+void rlReadPixels(
+    int x,
+    int y,
+    int width,
+    int height,
+    unsigned int format,
+    unsigned int type,
+    void *data) {
+  glReadPixels(
+      x, y,
+      width, height,
+      format,
+      type,
+      data);
+}
 
 void rlDepthFunc(unsigned int func) {
     glDepthFunc(func);
