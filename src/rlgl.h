@@ -1983,11 +1983,15 @@ void rlDepthFunc(unsigned int func) {
 }
 
 void rlLightModelfv(unsigned int pname, float *params) {
+#if defined(GRAPHICS_API_OPENGL_11)
     glLightModelfv(pname, params);
+#endif
 }
 
 void rlAlphaFunc(int func, float ref) {
+#if defined(GRAPHICS_API_OPENGL_11)
     glAlphaFunc(func, ref);
+#endif
 }
 
 void rlBlendFunc(int sFactor, int dFactor) {
@@ -2018,7 +2022,9 @@ void rlGenTextures(int n, unsigned int *textures) {
 }
 
 void rlLightfv(unsigned int light, unsigned int pname, const float *params) {
+#if defined(GRAPHICS_API_OPENGL_11)
   glLightfv(light, pname, params);
+#endif
 }
 
 void rlEnableUnsafe(int state) { glEnable(state); }
