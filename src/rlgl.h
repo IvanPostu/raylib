@@ -673,6 +673,7 @@ RLAPI void rlBlitFramebuffer(int srcX, int srcY, int srcWidth, int srcHeight, in
 RLAPI void rlBindFramebuffer(unsigned int target, unsigned int framebuffer); // Bind framebuffer (FBO)
 
 // General render state
+RLAPI void rlDrawVertexArrayElementsWithMode(unsigned int mode, int offset, int count, const void *buffer);
 RLAPI void rlGetDoublev(unsigned int pname, double *data);
 RLAPI void rlGetIntegerv(unsigned int pname, int *data);
 RLAPI void rlReadPixels(
@@ -1943,6 +1944,15 @@ void rlActiveDrawBuffers(int count)
 //----------------------------------------------------------------------------------
 // General render state configuration
 //----------------------------------------------------------------------------------
+
+void rlDrawVertexArrayElementsWithMode(unsigned int mode, int offset, int count, const void *buffer) {
+  // NOTE: Added pointer math separately from function to avoid UBSAN complaining
+  unsigned short *bufferPtr = (unsigned short *)buffer;
+  if (offset > 0)
+    bufferPtr += offset;
+
+  glDrawElements(mode, count, GL_UNSIGNED_SHORT, (const unsigned short *)bufferPtr);
+}
 
 void rlGetDoublev(unsigned int pname, double *data) {
   glGetDoublev(pname, data);
