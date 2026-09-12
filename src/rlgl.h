@@ -673,6 +673,8 @@ RLAPI void rlBlitFramebuffer(int srcX, int srcY, int srcWidth, int srcHeight, in
 RLAPI void rlBindFramebuffer(unsigned int target, unsigned int framebuffer); // Bind framebuffer (FBO)
 
 // General render state
+RLAPI void rlGetDoublev(unsigned int pname, double *data);
+RLAPI void rlGetIntegerv(unsigned int pname, int *data);
 RLAPI void rlReadPixels(
     int x,
     int y,
@@ -893,6 +895,7 @@ RLAPI void rlLoadDrawQuad(void);     // Load and draw a quad
             #endif
 
             #include <GL/gl.h>          // OpenGL 1.1 library
+            #include <GL/glu.h>
         #endif
     #endif
 #endif
@@ -1940,6 +1943,14 @@ void rlActiveDrawBuffers(int count)
 //----------------------------------------------------------------------------------
 // General render state configuration
 //----------------------------------------------------------------------------------
+
+void rlGetDoublev(unsigned int pname, double *data) {
+  glGetDoublev(pname, data);
+}
+
+void rlGetIntegerv(unsigned int pname, int *data) {
+  glGetIntegerv(pname, data);
+}
 
 void rlReadPixels(
     int x,
